@@ -12,9 +12,18 @@ function convertStringArrayToBytes32(array: string[]){
 }
 
 async function main() {
+    const args = process.argv;
+    const proposals = args.slice(2);
+    if (proposals.length <= 0) throw new Error("Missing parameters:proposals");
+
+    const provider = ethers.getDefaultProvider("goerli");
+    console.log({provider});
+    const lastBlock = await provider.getBlock("latest");
+    console.log({ lastBlock })
+
     console.log("Deploying Ballot contract");
     console.log("Proposals: ");
-    PROPOSALS.forEach((element, index) => {
+    proposals.forEach((element, index) => {
         console.log(`Proposal N. ${index + 1}: ${element}`);
     });
     
@@ -23,6 +32,7 @@ async function main() {
     const ballotContract = await ballotContractFactory.deploy(
         convertStringArrayToBytes32(PROPOSALS)
         );
+    console.log
     await ballotContract.deployTransaction.wait();
     console.log(`The Ballot contract was deployed at thed address ${ballotContract.address}`)
 }
