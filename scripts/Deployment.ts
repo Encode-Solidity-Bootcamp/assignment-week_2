@@ -26,8 +26,8 @@ async function main() {
     
     const signer = wallet.connect(provider);
     const balance = await signer.getBalance();
-
-    console.log(`Wallet balance: ${balance} Wei`) 
+    console.log(`Wallet balance: ${balance} Wei`)
+    
     console.log("Deploying Ballot contract");
     console.log("Proposals: ");
     proposals.forEach((element, index) => {
