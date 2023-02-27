@@ -14,7 +14,6 @@ const provider = new ethers.providers.InfuraProvider(
     process.env.INFURA_API_KEY
     );
 
-
 //get your signer from .env (should be chairperson)
  const privateKey = process.env.PRIVATE_KEY;
 

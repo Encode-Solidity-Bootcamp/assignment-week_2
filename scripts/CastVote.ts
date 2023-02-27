@@ -14,6 +14,7 @@ async function main() {
         process.env.INFURA_API_KEY
         );
 
+
     //get your signer from .env (should be voter)
     const privateKey = process.env.PRIVATE_KEY;
 
@@ -54,7 +55,6 @@ async function main() {
 
     console.log({hasVoted});
 }
-
 
 
 main().catch((error) => {
