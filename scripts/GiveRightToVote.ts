@@ -26,15 +26,15 @@ console.log(`Connected to the wallet ${wallet.address}`)
 
 //create a contract instance (attach)
 const factory =  new Ballot__factory(signer);
-const signerInstance = factory.attach(ballotAddress)
+const contractInstance = factory.attach(ballotAddress)
 
 //interact
-const transactionResponse = await signerInstance.giveRightToVote(voter);
+const transactionResponse = await contractInstance.giveRightToVote(voter);
 console.log(`setting ${voter} to be eligible to vote`);
 const txReceipt = await transactionResponse.wait(1);
 console.log(txReceipt);
 
-const result = await signerInstance.voters(signer.address);
+const result = await contractInstance.voters(signer.address);
 const voteWeight = result.weight;
 console.log(`${voter} is now eligible to vote and his vote weight is: ${voteWeight.toString()}`);
 

@@ -26,15 +26,15 @@ async function main() {
 
     //create a contract instance (attach)
     const factory =  new Ballot__factory(signer);
-    const signerInstance = factory.attach(ballotAddress);
+    const contractInstance = factory.attach(ballotAddress);
 
     //interact
-    const transactionResponse = await signerInstance.delegate(to);
+    const transactionResponse = await contractInstance.delegate(to);
     console.log(`Delegating vote to ${to}`);
     const txReceipt = await transactionResponse.wait(1);
     console.log(txReceipt);
 
-    const result = await signerInstance.voters(signer.address);
+    const result = await contractInstance.voters(signer.address);
     const delegate = result.delegate;
     console.log(`You have successfully delegated your vote to ${delegate} and the address owner is now eligible to vote on your behalf`);
 

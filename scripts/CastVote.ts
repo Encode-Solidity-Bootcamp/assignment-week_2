@@ -40,17 +40,17 @@ async function main() {
 
 //create a contract instance (attach)
     const factory =  new Ballot__factory(signer);
-    const signerInstance = factory.attach(ballotAddress)
+    const contractInstance = factory.attach(ballotAddress)
 
 //interact
-    const transactionResponse = await signerInstance.vote(proposalIndex);
+    const transactionResponse = await contractInstance.vote(proposalIndex);
     console.log("Voting in progress")
     const txReceipt = await transactionResponse.wait(1);
     console.log(txReceipt);
 
     console.log(`${signer.address} has just voted`);
 
-    const result = await signerInstance.voters(signer.address);
+    const result = await contractInstance.voters(signer.address);
     const hasVoted = result.voted;
 
     console.log({hasVoted});
