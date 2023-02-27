@@ -1,6 +1,7 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+The contract address for the Ballot contract can be found here:
+https://goerli.etherscan.io/address/0x72bD72F348ad7c1Aa0eEC0Fcf6e90D107089Eb02
 
 Try running some of the following tasks:
 
