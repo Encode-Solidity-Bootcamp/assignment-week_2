@@ -16,8 +16,14 @@ async function main() {
 
     //get your signer from .env (should be voter)
     const privateKey = process.env.PRIVATE_KEY;
-   
-   
+
+    if(!privateKey || privateKey.length <= 0)
+        throw new Error("Missing private key");
+
+    const wallet = new ethers.Wallet(privateKey);
+    
+    const signer = wallet.connect(provider);
+    console.log(`Connected to the wallet ${wallet.address}`)
 
     ////To create HD wallet, so as to create multiple addresses with one private key
 
@@ -28,14 +34,6 @@ async function main() {
     //     const derivedNode = HDNode.derivePath(`m/44'/60'/0'/0/${1}`);
     //     const derivedNode2 = HDNode.derivePath(`m/44'/60'/0'/0/${2}`);
 
-
-    if(!privateKey || privateKey.length <= 0)
-        throw new Error("Missing private key");
-
-    const wallet = new ethers.Wallet(privateKey);
-    
-    const signer = wallet.connect(provider);
-    console.log(`Connected to the wallet ${wallet.address}`)
     // console.log(`Connected to the wallet ${derivedNode.address}`)
     // console.log(`Connected to the wallet ${derivedNode2.address}`)
 
@@ -46,7 +44,8 @@ async function main() {
 //interact
     const transactionResponse = await signerInstance.vote(proposalIndex);
     console.log("Voting in progress")
-    await transactionResponse.wait(1);
+    const txReceipt = await transactionResponse.wait(1);
+    console.log(txReceipt);
 
     console.log(`${signer.address} has just voted`);
 
