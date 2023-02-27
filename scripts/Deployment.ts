@@ -4,6 +4,7 @@ import { Ballot__factory } from "../typechain-types";
 dotenv.config();
 
 function convertStringArrayToBytes32(array: string[]) {
+
     const bytes32Array = [];
     for (let index = 0; index < array.length; index++) {
         bytes32Array.push(ethers.utils.formatBytes32String(array[index]));
@@ -12,6 +13,7 @@ function convertStringArrayToBytes32(array: string[]) {
 }
 
 async function main() {
+
   const args = process.argv;
   const proposals = args.slice(2);
   if(proposals.length <= 0) throw new Error("Missing parameters: proposals");
@@ -48,6 +50,7 @@ async function main() {
         `The Ballot contract was deployed at the address ${ballotContract.address}`
     );
     console.log({deployTxReceipt});
+
 
 }
 
